@@ -1,11 +1,43 @@
 
+offset=4;
+voffset = .75;
+rebord = 4;
+epaisseur=1.2;
+marge_ba=1.2;
+
 difference () {
 
-roundCornersCube(96.5,56.5,4,17);
-//translate([-12.5,0,4])
-//cube([57,41,3],center=true); 
-translate([0,0,1.5])
-roundCornersCube(95,55,5,15.5);
+// coque de base
+	hull () {
+		
+      // cube de coque
+		translate([95/2-57/2-offset,0,-2])
+		cube([57, 41, 4], center = true);
+		
+		translate([0,0,rebord / 2])
+		roundCornersCube(95+epaisseur*2,55+epaisseur*2,rebord,15.5+epaisseur);
+		
+	}
+
+// ceci est la mint tin box
+translate([0,0,25+marge_ba])
+roundCornersCube(95,55,50,15.5);
+
+// ceci est l'ecran
+translate([95/2-57/2-offset,0,-2])
+cube([57, 41, 100], center = true);
+
+// on evide l'interieur
+hull () {
+		
+      // cube de coque
+		translate([95/2-57/2-offset,0,-2+voffset])
+		cube([57, 41, 4], center = true);
+		
+		translate([0,0,2+voffset])
+		roundCornersCube(95,55,4,15.5);
+		
+	}
 
 
 }
