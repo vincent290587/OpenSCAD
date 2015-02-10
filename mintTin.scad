@@ -1,9 +1,13 @@
 
+
 difference() {
+translate([0,0,10])
 roundCornersCube(95,55,20,15.5);
-translate([0,0,1])
-roundCornersCube(92,52,18.5,14);
+translate([0,0,13.5])
+roundCornersCube(92,52,24,14);
 }
+
+
 
 module createMeniscus(h,radius) // This module creates the shape that needs to be substracted from a cube to make its corners rounded.
 difference(){        //This shape is basicly the difference between a quarter of cylinder and a cube
