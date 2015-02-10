@@ -1,4 +1,7 @@
-
+epaisseur1=1.5;
+radius=12.5;
+xb=92+2*epaisseur1;
+yb=57.5+2*epaisseur1;
 offset=4;
 voffset = .75;
 rebord = 4;
@@ -11,36 +14,41 @@ difference () {
 	hull () {
 		
       // cube de coque
-		translate([95/2-57/2-offset,0,-2])
+		translate([xb/2-57/2-offset,0,-2])
 		cube([57, 41, 4], center = true);
 		
 		translate([0,0,rebord / 2])
-		roundCornersCube(95+epaisseur*2,55+epaisseur*2,rebord,15.5+epaisseur);
+		roundCornersCube(xb+epaisseur*2,yb+epaisseur*2,rebord,radius+epaisseur+epaisseur1);
 		
 	}
 
-// ceci est la mint tin box
+// ceci est la mint tin box (exterieur)
 translate([0,0,25+marge_ba])
-roundCornersCube(95,55,50,15.5);
+roundCornersCube(xb,yb,50,radius+epaisseur1);
 
 // ceci est l'ecran
-translate([95/2-57/2-offset,0,-2])
+translate([xb/2-57/2-offset,0,-2])
 cube([57, 41, 100], center = true);
 
 // on evide l'interieur
 hull () {
 		
       // cube de coque
-		translate([95/2-57/2-offset,0,-2+voffset])
+		translate([xb/2-57/2-offset,0,-2+voffset])
 		cube([57, 41, 4], center = true);
 		
 		translate([0,0,2+voffset])
-		roundCornersCube(95,55,4,15.5);
+		roundCornersCube(xb,yb,4,radius+epaisseur1);
 		
 	}
 
 
 }
+
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
+/////////////////////////////////
 
 module createMeniscus(h,radius) // This module creates the shape that needs to be substracted from a cube to make its corners rounded.
 difference(){        //This shape is basicly the difference between a quarter of cylinder and a cube

@@ -1,10 +1,11 @@
-
+epaisseur = 1.5;
+radius=12.5;
 
 difference() {
 translate([0,0,10])
-roundCornersCube(95,55,20,15.5);
+roundCornersCube(92+2*epaisseur,57.5+2*epaisseur,20,radius+epaisseur);
 translate([0,0,13.5])
-roundCornersCube(92,52,24,14);
+roundCornersCube(92,57.5,24,radius);
 }
 
 
