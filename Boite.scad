@@ -1,16 +1,16 @@
 
 
-hauteur = 20;
+hauteur = 11.5;
 epaisseur = 1.5;
 radius=1;
 
 difference() {
 translate([0,0,(hauteur+epaisseur)/2])
-roundCornersCube(110+2*epaisseur,51+2*epaisseur,hauteur+epaisseur,radius+epaisseur);
+roundCornersCube(101.5+2*epaisseur,50.5+2*epaisseur,hauteur+epaisseur,radius+epaisseur);
 
 // on enleve l'interieur
 translate([0,0,25 + epaisseur])
-cube([110, 51, 50], center = true);
+cube([101.5, 50.5, 50], center = true);
 }
 
 
