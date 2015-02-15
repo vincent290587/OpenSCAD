@@ -1,13 +1,13 @@
-epaisseur1=1.5;
-radius=2;
+epaisseur1=1.2;
+radius=epaisseur1;
 xc=101.5;
 yc=50.5;
 xb=xc+2*epaisseur1;
 yb=yc+2*epaisseur1;
 offset=4.5;
 //voffset = .75;
-rebord = 2.5;
-epaisseur=1.2;
+rebord = 3;
+epaisseur=1.1;
 marge_ba=1.2;
 hecran=57;
 
@@ -57,7 +57,7 @@ sphere(1.05, center = true);
 }
 
 // ceci est la box inferieure (exterieur)
-translate([0,0,25+marge_ba])
+translate([0,0,25])
 roundCornersCube(xb,yb,50,radius+epaisseur1);
 
 // ceci est l'ecran
