@@ -4,7 +4,7 @@ xc=101.5;
 yc=50.5;
 xb=xc+2*epaisseur1;
 yb=yc+2*epaisseur1;
-offset=4.5;
+offset=3.5;
 //voffset = .75;
 rebord = 3;
 epaisseur=1.1;
@@ -22,8 +22,9 @@ union () {
 hull() {
     
 // PCB ecran
-translate([xc/2-(hecran+4.5+5.5)/2+0.5,0,-17/2])
-cube([hecran+4.5+5.5, 41+2, 17], center = true);
+translate([xc/2-(hecran+4.5+5.5)/2+0.5,0,-15/2])
+cube([hecran+4.5+5.5, 41+2, 15], center = true);
+
 
 // socle ecran
 translate([(4.5+5.5)/2,0,rebord / 2])
@@ -45,7 +46,7 @@ roundCornersCube(xb-60,yb-15,rebord,radius+epaisseur1);
 
 hull () {
   // Inter
-  translate([-xc/2+40/2+4.5/2,yc/2-20/2-1.7/2,-7/2])
+  translate([-xc/2+40/2+4.5/2-0.5,yc/2-20/2-1.7/2,-7/2])
   cube([40, 20, 7], center = true);
     
   translate([0,0,rebord / 2])
@@ -61,15 +62,15 @@ translate([0,0,25])
 roundCornersCube(xb,yb,50,radius+epaisseur1);
 
 // ceci est l'ecran
-translate([xb/2-57/2-offset,0,-2])
+translate([xc/2-57/2-offset,0,-2])
 cube([57, 41, 100], center = true);
 // PCB ecran
-translate([xc/2-(hecran+4.5+5.5)/2+0.5,0,-17/2])
-cube([hecran+4.5+5.5, 41+2, 17], center = true);
+translate([xc/2-(hecran+4.5+5.5)/2+0.5,0,-15/2])
+cube([hecran+4.5+5.5, 41+2, 15], center = true);
 
 // ceci est la SD
-translate([xb/2,0,-1.5-13.5])
-cube([20, 15, 3], center = true);
+translate([xc/2,-2.5,-11.5])
+cube([15, 15, 3], center = true);
 
 // Inter
 translate([-xc/2+5/2+4/2,yc/2-13/2-3/2,-15])
@@ -90,7 +91,7 @@ roundCornersCube(xb-60,yb-15,rebord,radius+epaisseur1);
 
 hull () {
   // Inter
-  translate([-xc/2+40/2+4.5/2,yc/2-20/2-1.7/2,-7/2])
+  translate([-xc/2+40/2+4.5/2-0.5,yc/2-20/2-1.7/2,-7/2])
   cube([40, 20, 7], center = true);
     
   translate([0,0,rebord / 2])
@@ -101,8 +102,9 @@ hull () {
 hull() {
     
 // PCB ecran
-translate([xc/2-(hecran+4.5+5.5)/2+0.5,0,-17/2])
-cube([hecran+4.5+5.5, 41+2, 17], center = true);
+translate([xc/2-(hecran+4.5+5.5)/2+0.5,0,-15/2])
+cube([hecran+4.5+5.5, 41+2, 15], center = true);
+
 
 // socle ecran
 translate([10/2,0,rebord / 2])
