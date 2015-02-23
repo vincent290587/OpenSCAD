@@ -1,9 +1,10 @@
 epaisseur1=1.2;
 radius=epaisseur1;
+marge = 0.2;
 xc=101.5;
 yc=50.5;
-xb=xc+2*epaisseur1;
-yb=yc+2*epaisseur1;
+xb=xc+2*epaisseur1+2*marge;
+yb=yc+2*epaisseur1+2*marge;
 offset=3.5;
 //voffset = .75;
 rebord = 3;
@@ -70,7 +71,13 @@ cube([hecran+4.5+5.5, 41+2, 15], center = true);
 
 // ceci est la SD
 translate([xc/2,-2.5,-11.5])
-cube([15, 15, 3], center = true);
+rotate([0,90,0]) 
+roundCornersCube(3,15,20,2);
+
+// chargeur
+translate([-4.5,-25,-4])
+rotate([0,90,90]) 
+roundCornersCube(4,9,20,2);
 
 // Inter
 translate([-xc/2+5/2+4/2,yc/2-13/2-3/2,-15])
