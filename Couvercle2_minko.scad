@@ -1,13 +1,13 @@
-epaisseur1=1.2;
+epaisseur1=1.4;
 radius=epaisseur1;
-marge = 0.2;
+marge = 0.3;
 xc=101.5;
 yc=50.5;
 xb=xc+2*epaisseur1+2*marge;
 yb=yc+2*epaisseur1+2*marge;
-offset=3.5;
+offset=4;
 //voffset = .75;
-rebord = 3;
+rebord = 3.5;
 epaisseur=1.1;
 marge_ba=1.2;
 hecran=57;
@@ -80,7 +80,7 @@ rotate([0,90,90])
 roundCornersCube(4,9,20,2);
 
 // Inter
-translate([-xc/2+5/2+4/2,yc/2-13/2-3/2,-15])
+translate([-xc/2+5/2+4,yc/2-13/2-3/2,-15])
 cube([5, 13, 30], center = true);
 
 
