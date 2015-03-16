@@ -1,15 +1,17 @@
 boite_y = 48.5;
 boite_x = 97.6;
 hrenfort = 1;
-hauteur = 7.2;
+hauteur = 8.5;
 epaisseur = 1.4;
 pilotis = 7.5;
 
+difference () {
 union () {
     
-    translate([0,0,-hrenfort])
-    rotate(a=[0,180,0])
-    import("gqt.stl");
+translate([0,0,-hrenfort])
+rotate(a=[0,180,0])
+import("gqt.stl");
+    
 
 difference() {
 
@@ -41,6 +43,7 @@ cylinder(h = hrenfort, r=4);
 scale([4/15, 1/15, 1/15]) sphere(r=15); 
 }
 
+
 }
 
 // on enleve l'interieur
@@ -48,15 +51,22 @@ translate([0,0,50/2])
 cube([boite_x, boite_y, 50], center = true);
 
 // pour faciliter la visserie
-translate([0,0,pilotis+10/2]) {
-*cube([300, 300, 10], center = true);
+translate([0,0,hauteur+10/2]) {
+cube([300, 300, 10], center = true);
 }
 
 // chargeur
 translate([boite_x/2,-boite_y/2+5.6,pilotis - 1.5])
 rotate([0,90,0]) 
 roundCornersCube(10,9,20,2);
+
+
 }
+
+
+// tout en haut
+translate([-boite_x/2,-boite_y/2+15,0])
+cube([1.5, 5, pilotis], center = false);
 
 // en haut a gauche
 translate([-boite_x/2+33,-boite_y/2+0.5,0])
@@ -66,10 +76,6 @@ cylinder(h = pilotis, r=2);
 translate([-boite_x/2+33,boite_y/2-0.5,0])
 cylinder(h = pilotis, r=2);
 
-// tout en haut a droite
-translate([-boite_x/2,-boite_y/2+15,0])
-cube([1.5, 5, pilotis], center = false);
-
 // en bas a gauche
 translate([boite_x/2-1.5,-boite_y/2+0.5,0])
 cylinder(h = pilotis, r=2);
@@ -78,8 +84,45 @@ cylinder(h = pilotis, r=2);
 translate([boite_x/2-1.5,,boite_y/2-0.5,0])
 cylinder(h = pilotis, r=2);
 
+
 }
 
+
+// trous de vis
+// en haut a gauche
+translate([-boite_x/2+33,-boite_y/2,0])
+cylinder(h = 20, r=0.5, center = true);
+
+// en haut a droite
+translate([-boite_x/2+33,boite_y/2,0])
+cylinder(h = 20, r=0.5, center = true);
+
+// en bas a gauche
+translate([boite_x/2-1.5,-boite_y/2,0])
+cylinder(h = 20, r=0.5, center = true);
+
+// en bas a droite
+translate([boite_x/2-1.5,,boite_y/2,0])
+cylinder(h = 20, r=0.5, center = true);
+
+// tetes de vis
+// en haut a gauche
+translate([-boite_x/2+33,-boite_y/2,-2])
+cylinder(h = 2, r=2, center = true);
+
+// en haut a droite
+translate([-boite_x/2+33,boite_y/2,-2])
+cylinder(h = 2, r=2, center = true);
+
+// en bas a gauche
+translate([boite_x/2-1.5,-boite_y/2,-2])
+cylinder(h = 2, r=2, center = true);
+
+// en bas a droite
+translate([boite_x/2-1.5,,boite_y/2,-2])
+cylinder(h = 2, r=2, center = true);
+
+}
 
 
 /////////////////////////////////

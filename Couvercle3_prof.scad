@@ -1,22 +1,21 @@
 epaisseur1=1.4;
 radius=epaisseur1;
 marge = 0.3;
-xc=97;
-yc=48;
+xc=97.6;
+yc=48.5;
 xb=xc+2*epaisseur1+2*marge;
 yb=yc+2*epaisseur1+2*marge;
 offset=7;
 //voffset = .75;
 rebord = 3.5;
 epaisseur=1.1;
-marge_ba=1.2;
 hecran=48;
 lecran=36;
 zecran=8;
 
-
-
-
+difference () {
+    
+union () {
 difference () {
 
 // coque de base
@@ -30,16 +29,16 @@ translate([-xb/2+4*offset,yb/2-(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-offset,yb/2-(yb-lecran)/2,0])
-resize(newsize=[2*offset,(yb-lecran),zecran*2])
+translate([xb/2-0.75*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
 translate([-xb/2+4*offset,-yb/2+(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-offset,-yb/2+(yb-lecran)/2,0])
-resize(newsize=[2*offset,(yb-lecran),zecran*2])
+translate([xb/2-0.75*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
 sphere(r=120);
 
 translate([0,0,(rebord+2) / 2-3])
@@ -50,8 +49,8 @@ roundCornersCube(xb,yb,(rebord+2),radius+epaisseur1);
 hull () {
 
 // GPS
-translate([-xc/2+28/2,-yc/2+26/2,-(12)/2])
-cube([28, 26, 12], center = true);
+translate([-xc/2+28/2,-yc/2+26/2,-(11)/2])
+cube([28, 26, 11], center = true);
     
 // boite ecran
 translate([-60/2,-15/2,rebord / 2])
@@ -72,18 +71,25 @@ roundCornersCube(xb,yb,50,radius+epaisseur1);
 // ceci est l'ecran
 translate([xb/2-offset-hecran/2,0,-2])
 cube([hecran, lecran, 100], center = true);
+translate([xb/2-0.7-66/2,0,-5/2])
+cube([66, lecran, 5], center = true);
 
 // ceci est la SD
 translate([xc/2,-2.5,-2])
 rotate([0,90,0]) 
 roundCornersCube(3,15,20,2);
 
+// ceci est la molette
+translate([-xc/2+21.5,yc/2,-1.5])
+rotate([0,90,90]) 
+roundCornersCube(3,14,20,1);
+
 
 hull () {
 
 // GPS
-translate([-xc/2+28/2,-yc/2+26/2,-(12)/2])
-cube([28, 26, 12], center = true);
+translate([-xc/2+28/2,-yc/2+26/2,-(11)/2])
+cube([28, 26, 11], center = true);
     
 // boite GPS
 translate([-60/2,-15/2,rebord / 2])
@@ -97,25 +103,83 @@ translate([-xb/2+4*offset,yb/2-(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-offset,yb/2-(yb-lecran)/2,0])
-resize(newsize=[2*offset,(yb-lecran),zecran*2])
+translate([xb/2-0.75*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
 translate([-xb/2+4*offset,-yb/2+(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-offset,-yb/2+(yb-lecran)/2,0])
-resize(newsize=[2*offset,(yb-lecran),zecran*2])
+translate([xb/2-0.75*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
 sphere(r=120);
 
 translate([0,0,(rebord+2) / 2-3])
 roundCornersCube(xb,yb,(rebord+2),radius+epaisseur1);
 }
 
+}
+
+intersection () {
+// cube de coque (ecran)
+hull () {
+translate([-xb/2+4*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[8*offset,(yb-lecran),zecran*2])
+sphere(r=120);
+    
+translate([xb/2-0.75*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+sphere(r=120);
+    
+translate([-xb/2+4*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[8*offset,(yb-lecran),zecran*2])
+sphere(r=120);
+    
+translate([xb/2-0.75*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+sphere(r=120);
+
+translate([0,0,(rebord+2) / 2-3])
+roundCornersCube(xb,yb,(rebord+2),radius+epaisseur1);
+}
+union () {
+// en haut
+translate([-xc/2+33,-yc/2-0.4,-8/2])
+cylinder(h = 8, r=2, center = true);
+
+translate([-xc/2+33,yc/2+0.4,-8/2])
+cylinder(h = 8, r=2, center = true);
+
+//en bas
+translate([xc/2-1.5,-yc/2-0.4,-7/2])
+cylinder(h = 7, r=2, center = true);
+
+translate([xc/2-1.5,yc/2+0.4,-7/2])
+cylinder(h = 7, r=2, center = true);
+}
+}
+
+}
+
+// en haut
+translate([-xc/2+33,-yc/2,-6/2])
+cylinder(h = 6, r=0.5, center = true);
+
+translate([-xc/2+33,yc/2,-6/2])
+cylinder(h = 6, r=0.5, center = true);
+
+//en bas
+translate([xc/2-1.5,-yc/2,-5/2])
+cylinder(h = 6, r=0.5, center = true);
+
+translate([xc/2-1.5,yc/2,-5/2])
+cylinder(h = 6, r=0.5, center = true);
 
 
 }
+
+
 
 /////////////////////////////////
 /////////////////////////////////
