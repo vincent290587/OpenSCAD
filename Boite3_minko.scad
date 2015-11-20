@@ -4,6 +4,7 @@ hrenfort = 1;
 hauteur = 8.5;
 epaisseur = 1.4;
 pilotis = 7.5;
+d_screw = 1.7;
 
 difference () {
 union () {
@@ -26,8 +27,8 @@ sphere(epaisseur, center = true);
 
 minkowski () {
 minkowski () {
-translate([0,-15,-hrenfort-epaisseur+1])
-cube([60,8,hrenfort], center = true);
+translate([0,-14.7,-hrenfort-epaisseur+1])
+cube([60,10,hrenfort], center = true);
 cylinder(h = hrenfort, r=4);
 }
 
@@ -35,8 +36,8 @@ scale([4/15, 1/15, 1/15]) sphere(r=15);
 }
 minkowski () {
 minkowski () {
-translate([0,15,-hrenfort-epaisseur+1])
-cube([60,8,hrenfort], center = true);
+translate([0,14.7,-hrenfort-epaisseur+1])
+cube([60,10,hrenfort], center = true);
 cylinder(h = hrenfort, r=4);
 }
 
@@ -50,40 +51,55 @@ scale([4/15, 1/15, 1/15]) sphere(r=15);
 translate([0,0,50/2])
 cube([boite_x, boite_y, 50], center = true);
 
+// interrupteur
+translate([-boite_x/2+1,-boite_y/2,-20/2])
+cube([4, 12, 20], center = false);
+
 // pour faciliter la visserie
 translate([0,0,hauteur+10/2]) {
 cube([300, 300, 10], center = true);
 }
 
 // chargeur
-translate([boite_x/2,-boite_y/2+5.6,pilotis - 1.5])
+translate([boite_x/2,-boite_y/2+5.7,pilotis - 5.3])
 rotate([0,90,0]) 
-roundCornersCube(10,9,20,2);
+roundCornersCube(4,9,20,2);
 
+// teensy
+translate([boite_x/2,-boite_y/2+21,pilotis - 5.3])
+rotate([0,90,0]) 
+roundCornersCube(4,9,20,2);
 
 }
 
 
 // tout en haut
-translate([-boite_x/2,-boite_y/2+15,0])
-cube([1.5, 5, pilotis], center = false);
+translate([-boite_x/2-0.1,0,0])
+cube([2, 8, pilotis], center = false);
 
 // en haut a gauche
-translate([-boite_x/2+33,-boite_y/2+0.5,0])
-cylinder(h = pilotis, r=2);
+translate([-boite_x/2+33,-boite_y/2+0.5,pilotis/2])
+cube([4, 1.9, pilotis], center = true);
 
 // en haut a droite
-translate([-boite_x/2+33,boite_y/2-0.5,0])
-cylinder(h = pilotis, r=2);
+translate([-boite_x/2+33,boite_y/2-0.5,pilotis/2])
+cube([4, 1.9, pilotis], center = true);
 
 // en bas a gauche
-translate([boite_x/2-1.5,-boite_y/2+0.5,0])
-cylinder(h = pilotis, r=2);
+translate([boite_x/2-2,-boite_y/2+0.5,pilotis/2])
+cube([4, 1.5, pilotis], center = true);
 
 // en bas a droite
-translate([boite_x/2-1.5,,boite_y/2-0.5,0])
-cylinder(h = pilotis, r=2);
+translate([boite_x/2-1.5,,boite_y/2-0.5,pilotis/2])
+cube([4, 2, pilotis], center = true);
 
+// au milieu en haut
+translate([-boite_x/2+33+7,-boite_y/2+15,0])
+cylinder(h = pilotis-0.5, r=2);
+
+// au milieu en bas
+translate([boite_x/2-29,boite_y/2-12,0])
+cylinder(h = pilotis-0.5, r=2);
 
 }
 
@@ -91,36 +107,36 @@ cylinder(h = pilotis, r=2);
 // trous de vis
 // en haut a gauche
 translate([-boite_x/2+33,-boite_y/2,0])
-cylinder(h = 20, r=0.5, center = true);
+cylinder(h = 20, r=d_screw/2, center = true);
 
 // en haut a droite
 translate([-boite_x/2+33,boite_y/2,0])
-cylinder(h = 20, r=0.5, center = true);
+cylinder(h = 20, r=d_screw/2, center = true);
 
 // en bas a gauche
 translate([boite_x/2-1.5,-boite_y/2,0])
-cylinder(h = 20, r=0.5, center = true);
+cylinder(h = 20, r=d_screw/2, center = true);
 
 // en bas a droite
 translate([boite_x/2-1.5,,boite_y/2,0])
-cylinder(h = 20, r=0.5, center = true);
+cylinder(h = 20, r=d_screw/2, center = true);
 
 // tetes de vis
 // en haut a gauche
 translate([-boite_x/2+33,-boite_y/2,-2])
-cylinder(h = 2, r=2, center = true);
+cylinder(h = 2, r=3, center = true);
 
 // en haut a droite
 translate([-boite_x/2+33,boite_y/2,-2])
-cylinder(h = 2, r=2, center = true);
+cylinder(h = 2, r=3, center = true);
 
 // en bas a gauche
-translate([boite_x/2-1.5,-boite_y/2,-2])
-cylinder(h = 2, r=2, center = true);
+//translate([boite_x/2-1.5,-boite_y/2,-2])
+//cylinder(h = 2, r=2, center = true);
 
 // en bas a droite
-translate([boite_x/2-1.5,,boite_y/2,-2])
-cylinder(h = 2, r=2, center = true);
+//translate([boite_x/2-1.5,,boite_y/2,-2])
+//cylinder(h = 2, r=2, center = true);
 
 }
 

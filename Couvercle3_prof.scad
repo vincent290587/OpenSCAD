@@ -6,16 +6,36 @@ yc=48.5;
 xb=xc+2*epaisseur1+2*marge;
 yb=yc+2*epaisseur1+2*marge;
 offset=7;
-//voffset = .75;
-rebord = 3.5;
+
+rebord = 3.1;
 epaisseur=1.1;
 hecran=48;
 lecran=36;
 zecran=8;
+d_screw = 1.27;
 
 difference () {
     
 union () {
+
+translate([-xc/2+15,-9,-12.1])
+minkowski () {
+linear_extrude(height = 0.5, center = true, convexity = 10, twist = 0)
+resize([20,20,0])
+rotate([0, 0, -90])
+union () {
+resize([27.5,27.5,0])
+polygon(points=[[0,0],[36,0],[18,36],[11,0],[36-11,0],[18,14]],
+paths=[[0,2,1],[5,4,3]]);
+
+translate([36-26+9,0,0])
+rotate([0, 0, 180])
+polygon(points=[[0,0],[36,0],[18,36],[11,0],[36-11,0],[18,14]],
+paths=[[0,2,1],[5,4,3]]); 
+}
+sphere(r=0.2);
+}
+
 difference () {
 
 // coque de base
@@ -29,16 +49,16 @@ translate([-xb/2+4*offset,yb/2-(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-0.75*offset,yb/2-(yb-lecran)/2,0])
-resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+translate([xb/2-1*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[2*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
 translate([-xb/2+4*offset,-yb/2+(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-0.75*offset,-yb/2+(yb-lecran)/2,0])
-resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+translate([xb/2-1*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[2*offset,(yb-lecran),zecran*2])
 sphere(r=120);
 
 translate([0,0,(rebord+2) / 2-3])
@@ -68,10 +88,14 @@ sphere(epaisseur, center = true);
 translate([0,0,25])
 roundCornersCube(xb,yb,50,radius+epaisseur1);
 
+// nettoyage base
+translate([0,0,rebord+epaisseur+50/2-0.3])
+cube([300,300,50], center = true);
+
 // ceci est l'ecran
-translate([xb/2-offset-hecran/2,0,-2])
+translate([xc/2-offset-hecran/2,0,-2])
 cube([hecran, lecran, 100], center = true);
-translate([xb/2-0.7-66/2,0,-5/2])
+translate([xc/2-0.7-66/2,0,-5/2])
 cube([66, lecran, 5], center = true);
 
 // ceci est la SD
@@ -80,7 +104,7 @@ rotate([0,90,0])
 roundCornersCube(3,15,20,2);
 
 // ceci est la molette
-translate([-xc/2+21.5,yc/2,-1.5])
+translate([-xc/2+21.5,yc/2,-1.5+1])
 rotate([0,90,90]) 
 roundCornersCube(3,14,20,1);
 
@@ -103,16 +127,16 @@ translate([-xb/2+4*offset,yb/2-(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-0.75*offset,yb/2-(yb-lecran)/2,0])
-resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+translate([xb/2-1*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[2*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
 translate([-xb/2+4*offset,-yb/2+(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-0.75*offset,-yb/2+(yb-lecran)/2,0])
-resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+translate([xb/2-1*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[2*offset,(yb-lecran),zecran*2])
 sphere(r=120);
 
 translate([0,0,(rebord+2) / 2-3])
@@ -123,58 +147,71 @@ roundCornersCube(xb,yb,(rebord+2),radius+epaisseur1);
 
 intersection () {
 // cube de coque (ecran)
+    union () {
 hull () {
 translate([-xb/2+4*offset,yb/2-(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-0.75*offset,yb/2-(yb-lecran)/2,0])
-resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+translate([xb/2-1*offset,yb/2-(yb-lecran)/2,0])
+resize(newsize=[2*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
 translate([-xb/2+4*offset,-yb/2+(yb-lecran)/2,0])
 resize(newsize=[8*offset,(yb-lecran),zecran*2])
 sphere(r=120);
     
-translate([xb/2-0.75*offset,-yb/2+(yb-lecran)/2,0])
-resize(newsize=[1.5*offset,(yb-lecran),zecran*2])
+translate([xb/2-1*offset,-yb/2+(yb-lecran)/2,0])
+resize(newsize=[2*offset,(yb-lecran),zecran*2])
 sphere(r=120);
 
 translate([0,0,(rebord+2) / 2-3])
 roundCornersCube(xb,yb,(rebord+2),radius+epaisseur1);
 }
+hull () {
+
+// GPS
+translate([-xc/2+28/2,-yc/2+26/2,-(11)/2])
+cube([28, 26, 11], center = true);
+    
+// boite ecran
+translate([-60/2,-15/2,rebord / 2])
+roundCornersCube(xb-60,yb-15,rebord,radius+epaisseur1);
+    
+}
+}
 union () {
 // en haut
 translate([-xc/2+33,-yc/2-0.4,-8/2])
-cylinder(h = 8, r=2, center = true);
+cylinder(h = 8, r=2.5, center = true);
 
 translate([-xc/2+33,yc/2+0.4,-8/2])
-cylinder(h = 8, r=2, center = true);
+cylinder(h = 8, r=2.5, center = true);
 
 //en bas
 translate([xc/2-1.5,-yc/2-0.4,-7/2])
-cylinder(h = 7, r=2, center = true);
+cylinder(h = 7, r=2.5, center = true);
 
 translate([xc/2-1.5,yc/2+0.4,-7/2])
-cylinder(h = 7, r=2, center = true);
+cylinder(h = 7, r=2.5, center = true);
 }
 }
 
 }
 
 // en haut
-translate([-xc/2+33,-yc/2,-6/2])
-cylinder(h = 6, r=0.5, center = true);
+translate([-xc/2+33,-yc/2,-5/2])
+cylinder(h = 5, r=d_screw/2, center = true);
 
-translate([-xc/2+33,yc/2,-6/2])
-cylinder(h = 6, r=0.5, center = true);
+translate([-xc/2+33,yc/2,-4.7/2])
+cylinder(h = 4.7, r=d_screw/2, center = true);
 
 //en bas
-translate([xc/2-1.5,-yc/2,-5/2])
-cylinder(h = 6, r=0.5, center = true);
+translate([xc/2-1.5,-yc/2,-4.5/2])
+cylinder(h = 4.5, r=d_screw/2, center = true);
 
-translate([xc/2-1.5,yc/2,-5/2])
-cylinder(h = 6, r=0.5, center = true);
+translate([xc/2-1.5,yc/2,-4.5/2])
+cylinder(h = 4.5, r=d_screw/2, center = true);
 
 
 }
