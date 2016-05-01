@@ -1,18 +1,39 @@
 epaisseur1=1.4;
 radius=epaisseur1;
 marge = 0.3;
-xc=63;
-yc=43;
-zecran=6.0;
+
+boite_x = 65;
+boite_y = 46;
+d_screw = 4;
+e_screw = 1;
+
+xc=boite_x;
+yc=boite_y;
+zecran=7;
 xb=xc+2*epaisseur1+2*marge;
 yb=yc+2*epaisseur1+2*marge;
 offset=0.2;
 //voffset = .75;
-rebord = 3.5;
+rebord = 2;
 epaisseur=1.1;
 marge_ba=1.2;
 hecran=64;
 lecran=46;
+
+xs1 = - boite_x / 2 + 1.45;
+xs2 = - boite_x / 2 + 1.45;
+xs3 = - boite_x / 2 + 40.05;
+xs4 = - boite_x / 2 + 63.4;
+xs5 = - boite_x / 2 + 29;
+
+ys1 = + boite_y / 2 - 3.5;
+ys2 = + boite_y / 2 - 43.6;
+ys3 = + boite_y / 2 - 1.75;
+ys4 = + boite_y / 2 - 29.15;
+ys5 = + boite_y / 2 - 44;
+
+translate([0,-30,10])
+import("Couvercle4_round_int.stl");
 
 
 difference () {
@@ -110,6 +131,31 @@ translate([0,0,0])
 cube([58, 36, 100], center = true);
     
 }
+
+
+
+
+
+translate([xs1-d_screw/2 - e_screw + 0.5,ys1,-3])
+cube([2, 1, 3], center = true);
+    
+translate([xs1,ys1,-5])
+difference () {
+cylinder(h = 4, r=d_screw/2 + e_screw, center = false);
+cylinder(h = 5, r=d_screw/2, center = false);
+}
+
+
+
+translate([xs3,ys3+d_screw/2 + e_screw - 0.5,-3])
+cube([1, 2, 3], center = true);
+    
+translate([xs3,ys3,-5])
+difference () {
+cylinder(h = 4, r=d_screw/2 + e_screw, center = false);
+cylinder(h = 5, r=d_screw/2, center = false);
+}
+
 
 /////////////////////////////////
 /////////////////////////////////

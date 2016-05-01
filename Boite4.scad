@@ -41,8 +41,8 @@ sphere(epaisseur, center = true);
 
 minkowski () {
 minkowski () {
-translate([0,-14.7,-hrenfort-epaisseur+1])
-cube([35,7,hrenfort], center = true);
+translate([0,-12.7,-hrenfort-epaisseur+1])
+cube([32,6,hrenfort], center = true);
 cylinder(h = hrenfort, r=4);
 }
 
@@ -50,8 +50,8 @@ scale([4/15, 1/15, 1/15]) sphere(r=15);
 }
 minkowski () {
 minkowski () {
-translate([0,14.7,-hrenfort-epaisseur+1])
-cube([35,7,hrenfort], center = true);
+translate([0,12.7,-hrenfort-epaisseur+1])
+cube([32,6,hrenfort], center = true);
 cylinder(h = hrenfort, r=4);
 }
 
@@ -136,6 +136,8 @@ cylinder(h = 2, r=4, center = true);
 //translate([boite_x/2-1.5,,boite_y/2,-2])
 //cylinder(h = 2, r=2, center = true);
 
+cylinder(h = 3, r=13, center = true);
+cylinder(h = 6, r=9, center = true);
 }
 
 
